@@ -1,0 +1,28 @@
+# Folder layout (paths relative to vault root)
+folders:
+  inbox: inbox
+  compiled: compiled
+  concepts: compiled/concepts
+  opinions: compiled/opinions
+  digests: compiled/digests
+  questions: compiled/questions.md
+
+# Frontmatter field names
+frontmatter:
+  sources: sources
+  links: links
+  tags: tags
+
+# Cross-reference behavior
+links:
+  style: wikilinks
+  auto_link: true
+
+# Save / update behavior
+behaviors:
+  save_collision: ask
+
+# Paths the skills should ignore
+ignore:
+  - .obsidian/
+  - Daily/

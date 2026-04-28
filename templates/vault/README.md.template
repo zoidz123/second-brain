@@ -1,0 +1,13 @@
+# Second Brain Vault
+
+This vault is maintained by the Second Brain skill pack.
+
+- `inbox/`: raw source files.
+- `inbox/index.md`: AI-maintained source table of contents.
+- `compiled/concepts/`: factual synthesis pages.
+- `compiled/opinions/`: user-view and thesis pages.
+- `compiled/questions.md`: append-only open questions.
+- `compiled/digests/`: periodic synthesis pages.
+- `.second-brain.yml`: folder, frontmatter, link, and behavior config.
+- `style.md`: user-editable writing and research behavior. Commands read this before acting.
+- `log.md`: append-only audit trail.

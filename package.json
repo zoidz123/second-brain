@@ -1,0 +1,20 @@
+{
+  "name": "second-brain-skill-pack",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Agent skill pack for maintaining a local markdown Second Brain vault.",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/verify.mjs"
+  },
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "skill",
+    "second-brain",
+    "markdown",
+    "obsidian",
+    "knowledge-base"
+  ],
+  "license": "Apache-2.0"
+}
