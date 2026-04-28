@@ -16,16 +16,17 @@ Second Brain is a local-first markdown vault convention. The filesystem is the p
 - Never silently overwrite user work. Ask before destructive changes. For save collisions, follow `behaviors.save_collision` from `.second-brain.yml`.
 - `questions.md is append-only`. There is no update-question command.
 - Append a structured line to `log.md` after every command that writes to the vault.
+- Hard rules in this section cannot be overridden by `style.md`.
 
 ## Before Every Command
 
 1. Resolve the active vault from `~/.second-brain/config.json`, except during `/second-brain init`.
 2. Read `.second-brain.yml` from the active vault root for structure config. Use defaults if fields are missing.
-3. Read `style.md` from the active vault root for behavioral rules. If `style.md` conflicts with these defaults, `style.md wins`.
+3. Read `style.md` from the active vault root for soft writing rules. If `style.md` conflicts with tone, structure, length, or domain conventions, `style.md wins`. Hard safety/product rules still apply.
 4. Read the relevant index before writing: `inbox/index.md` for inbox work, `compiled/index.md` for compiled work.
 5. Preserve manual edits unless the user explicitly approves changing them.
 
-`SKILL.md` is the product-wide default behavior. A vault's `style.md` is the user-owned local override. Commands must load both; when they differ, the vault's `style.md` wins unless the user asks to change the global defaults.
+`SKILL.md` is the product-wide default behavior. A vault's `style.md` is the user-owned local override for soft rules: tone, structure, length, formatting, domain conventions, and personal writing preferences. Commands must load both. When they differ on soft rules, the vault's `style.md` wins. `style.md` cannot override hard rules: source attribution, no silent overwrite, append-only questions, no auto-promotion, and explicit approval before destructive changes.
 
 ## Default Vault Layout
 
@@ -64,9 +65,34 @@ links:
   auto_link: true
 behaviors:
   save_collision: ask
+  process_missing: mark-missing
 ignore:
   - .obsidian/
 ```
+
+## Compiled Page Frontmatter
+
+Concept, opinion, and digest pages use this frontmatter:
+
+```yaml
+---
+type: concept
+title: "Readable Title"
+created: 2026-04-28T00:00:00Z
+updated: 2026-04-28T00:00:00Z
+sources: []
+links: []
+tags: []
+---
+```
+
+Rules:
+
+- `type` is `concept`, `opinion`, or `digest`.
+- `created` and `updated` use ISO 8601 timestamps.
+- Source paths are vault-relative paths like `inbox/source-file.md`.
+- Link paths are vault-relative compiled paths like `compiled/concepts/attention.md`, unless `links.style` asks for wikilinks in the body.
+- Slugs are lowercase, hyphenated, ASCII filenames derived from the inferred title. Remove punctuation, collapse whitespace, and use numbered suffixes for variants.
 
 ## Writing Compiled Pages
 
@@ -77,6 +103,8 @@ Opinion pages are evaluative and should preserve the user's original opinion, wo
 Avoid generic consultant language and AI slop. Write like the user's future self, not like a polished corporate memo.
 
 Both page types are synthesized from the current conversation plus relevant vault sources, not from a required topic parameter.
+
+One conversation may update many artifacts. If the current conversation clearly changes multiple concepts or opinions, identify the affected files, summarize the proposed changes per file, ask once for approval, then update all approved files in one batch. Preserve each file's voice and structure.
 
 When `links.auto_link` is true, scan existing pages under `compiled/` and insert cross-references to clearly matching entities. Use `[[wikilinks]]` when `links.style` is `wikilinks`; otherwise use markdown links.
 

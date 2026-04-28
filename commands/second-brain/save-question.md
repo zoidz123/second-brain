@@ -8,7 +8,7 @@ Use the Second Brain skill.
 Before doing anything:
 1. Read `.second-brain.yml` from the active vault root for structure config.
 2. Read `style.md` from the active vault root for behavioral rules.
-3. Apply both. If they conflict with these instructions, style.md wins.
+3. Apply both. style.md wins for soft writing rules; hard safety and product rules from SKILL.md still apply.
 
 Append a question to `compiled/questions.md`. The hint is optional context only; infer the question from the current conversation when no hint is provided.
 

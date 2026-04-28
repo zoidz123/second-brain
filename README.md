@@ -88,6 +88,7 @@ Available values:
 - `SKILL.md`: shared product rules and skill metadata.
 - `templates/vault/`: files copied into a new vault by `/second-brain init`.
 - `docs/specs/design.md`: product and behavior spec.
+- `docs/install.md`: runtime-specific install guidance.
 
 ## Agent Compatibility
 

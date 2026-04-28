@@ -62,6 +62,7 @@ for (const command of readdirSync(join(root, "commands/second-brain")).filter((f
   assert(body.includes(".second-brain.yml"), `${command} does not read .second-brain.yml`);
   assert(body.includes("style.md"), `${command} does not read style.md`);
   assert(/style\.md wins/i.test(body), `${command} does not state style.md wins`);
+  assert(/hard safety and product rules/i.test(body), `${command} does not preserve hard rules`);
 }
 
 for (const command of ["save-concept", "save-opinion", "save-question", "update-concept", "update-opinion"]) {
@@ -87,10 +88,16 @@ assert(skill.includes("## What I Believe"), "skill omits opinion belief section"
 assert(skill.includes("## Why I Believe It"), "skill omits opinion evidence section");
 assert(skill.includes("## What Would Change My Mind"), "skill omits opinion falsification section");
 assert(/AI slop/i.test(skill), "skill omits anti-slop rule");
+assert(/Hard rules/i.test(skill), "skill omits hard rules hierarchy");
+assert(/process_missing: mark-missing/i.test(skill), "skill omits process_missing default");
+assert(/type: concept/i.test(skill), "skill omits canonical frontmatter");
+assert(/created: 2026-04-28T00:00:00Z/i.test(skill), "skill omits timestamp frontmatter example");
+assert(/One conversation may update many artifacts/i.test(skill), "skill omits multi-artifact update rule");
 
 const config = read("templates/vault/.second-brain.yml");
 const style = read("templates/vault/style.md.template");
 assert(config.includes("save_collision: ask"), "template config omits save_collision default");
+assert(config.includes("process_missing: mark-missing"), "template config omits process_missing default");
 assert(config.includes("auto_link: true"), "template config omits auto_link default");
 assert(config.includes("questions: compiled/questions.md"), "template config omits questions path");
 assert(!config.includes("Daily/"), "template config should not ignore Daily/ by default");
@@ -111,6 +118,29 @@ assert(readme.includes("/second-brain save-concept"), "README omits save-concept
 assert(readme.includes("/sb-concept"), "README omits short alias");
 assert(readme.includes("style.md"), "README omits style.md");
 assert(readme.includes(".second-brain.yml"), "README omits .second-brain.yml");
+assert(existsSync(join(root, "docs/install.md")), "missing install docs");
+const install = read("docs/install.md");
+assert(install.includes("~/.agents/skills"), "install docs omit Codex skills path");
+assert(install.includes("commands/second-brain/"), "install docs omit command source path");
+
+const init = read("commands/second-brain/init.md");
+assert(init.includes("style.md.template` -> `style.md"), "init omits style template mapping");
+assert(init.includes("compiled-index.md` -> `compiled/index.md"), "init omits compiled index mapping");
+assert(init.includes("inbox-index.md` -> `inbox/index.md"), "init omits inbox index mapping");
+
+const processCommand = read("commands/second-brain/process.md");
+assert(processCommand.includes("process_missing"), "process omits missing-file behavior");
+assert(processCommand.includes("mark-missing"), "process omits mark-missing default");
+
+const saveConcept = read("commands/second-brain/save-concept.md");
+const saveOpinion = read("commands/second-brain/save-opinion.md");
+assert(saveConcept.includes("canonical compiled page frontmatter"), "save-concept omits canonical frontmatter");
+assert(saveOpinion.includes("canonical compiled page frontmatter"), "save-opinion omits canonical frontmatter");
+
+const updateConcept = read("commands/second-brain/update-concept.md");
+const updateOpinion = read("commands/second-brain/update-opinion.md");
+assert(/multiple concept pages/i.test(updateConcept), "update-concept omits multi-file update");
+assert(/multiple opinion pages/i.test(updateOpinion), "update-opinion omits multi-file update");
 
 if (!process.exitCode) {
   console.log("Second Brain skill pack verification passed.");

@@ -59,9 +59,17 @@ Default writing rules:
 
 Every command must read both before acting. If `style.md` conflicts with skill defaults, `style.md` wins.
 
+Hierarchy:
+
+- Hard rules live in `SKILL.md`: source attribution, no silent overwrite, append-only questions, no auto-promotion, and explicit approval before destructive changes.
+- Soft rules live in `style.md`: tone, structure, length, formatting, domain conventions, and personal writing preferences.
+- `style.md` wins only for soft rules.
+
 ## Commands
 
 Command specs are stored as generic markdown under `commands/` so Codex, Claude, and other agent runtimes can adapt them to their own invocation systems.
+
+Runtime-specific setup lives in `docs/install.md`.
 
 Only `/second-brain recall <query>` requires a parameter.
 
@@ -121,6 +129,41 @@ Modes:
 - `ask`: prompt before merge or new file.
 - `merge`: merge into existing page.
 - `new`: create numbered variant.
+
+## Process Missing Behavior
+
+```yaml
+behaviors:
+  process_missing: mark-missing
+```
+
+Modes:
+
+- `mark-missing`: keep the index entry and mark it missing.
+- `ask`: ask before changing the entry.
+- `remove`: remove the entry.
+
+## Frontmatter
+
+Compiled pages use:
+
+```yaml
+---
+type: concept
+title: "Readable Title"
+created: 2026-04-28T00:00:00Z
+updated: 2026-04-28T00:00:00Z
+sources: []
+links: []
+tags: []
+---
+```
+
+Source paths are vault-relative `inbox/...` paths. Link paths are vault-relative compiled paths.
+
+## Multi-Artifact Updates
+
+One conversation may update many concepts or opinions. Update commands should identify the affected files, summarize proposed changes per file, ask once for approval, and update all approved files in one batch.
 
 ## Source Attribution
 

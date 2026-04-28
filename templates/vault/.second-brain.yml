@@ -21,6 +21,7 @@ links:
 # Save / update behavior
 behaviors:
   save_collision: ask
+  process_missing: mark-missing
 
 # Paths the skills should ignore
 ignore:
