@@ -1,79 +1,104 @@
 # Second Brain
 
-An agent skill for building a local markdown second brain.
+Second Brain is an agent skill pack plus a local markdown vault convention.
 
-It is an opinionated implementation of Andrej Karpathy's [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) pattern: raw sources go in, an agent maintains a structured wiki of durable markdown pages.
+It helps you turn conversations about reading and research into durable concept, opinion, question, and digest files. The product is intentionally simple: no app, no daemon, no database. Users keep a normal folder of markdown files and ask the agent to maintain it.
 
-Second Brain makes that pattern installable as a skill for agents that support `SKILL.md`.
-
-## What It Does
-
-- Keeps raw sources in `inbox/`
-- Saves concepts, opinions, questions, and digests into `compiled/`
-- Uses `style.md` so each vault can have its own writing behavior
-- Writes concise concept pages with `TL;DR`, `Simple Overview`, and `Why This Matters`
-- Preserves the user's actual opinions instead of turning them into AI slop
-
-## Install
-
-Codex:
-
-```bash
-git clone https://github.com/zoidz123/second-brain.git ~/.codex/second-brain
-mkdir -p ~/.agents/skills
-ln -s ~/.codex/second-brain/skills/second-brain ~/.agents/skills/second-brain
-```
-
-Claude:
-
-```bash
-git clone https://github.com/zoidz123/second-brain.git ~/second-brain
-mkdir -p ~/.claude/skills
-ln -s ~/second-brain/skills/second-brain ~/.claude/skills/second-brain
-```
-
-More: [docs/install.md](docs/install.md)
-
-## Commands
-
-```text
-/second-brain init [name]          /sb-init
-/second-brain process              /sb-process
-/second-brain save-concept [hint]  /sb-concept
-/second-brain save-opinion [hint]  /sb-opinion
-/second-brain save-question [hint] /sb-question
-/second-brain update-concept [name]
-/second-brain update-opinion [name]
-/second-brain recall <query>
-/second-brain review
-/second-brain lint
-/second-brain digest [period]
-```
-
-Only `recall` requires an argument. Everything else should infer from the current conversation unless you provide an optional hint.
-
-## Layout
-
-Installable skill: `skills/second-brain/SKILL.md`
-
-```text
-skills/second-brain/
-  SKILL.md
-  references/commands/
-  references/aliases/
-  assets/vault/
-```
-
-The user vault created by `/init` looks like:
+## Vault Layout
 
 ```text
 ~/SecondBrain/<vault>/
   inbox/
+    index.md
   compiled/
+    index.md
+    concepts/
+    opinions/
+    questions.md
+    digests/
+  log.md
   style.md
   .second-brain.yml
-  log.md
 ```
+
+`.second-brain.yml` controls structure: folder paths, frontmatter fields, link style, auto-linking, and save collision behavior.
+
+`style.md` controls behavior: tone, formatting, citation expectations, and domain conventions. Every command reads it before acting, and the user edits the vault-local copy.
+
+Default writing style:
+
+- Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
+- Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
+- Opinion pages include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+- Opinion evidence belongs in `## Why I Believe It`.
+- Pages should be concise. Do not pad.
+- Avoid generic consultant language and AI slop.
+
+## Commands
+
+Command specs live in `skills/second-brain/references/commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.
+
+| Long | Short |
+|---|---|
+| `/second-brain init [name]` | `/sb-init [name]` |
+| `/second-brain list` | `/sb-list` |
+| `/second-brain switch <name>` | `/sb-switch <name>` |
+| `/second-brain process` | `/sb-process` |
+| `/second-brain save-concept [hint]` | `/sb-concept [hint]` |
+| `/second-brain save-opinion [hint]` | `/sb-opinion [hint]` |
+| `/second-brain save-question [hint]` | `/sb-question [hint]` |
+| `/second-brain update-concept [name]` | `/sb-concept-update [name]` |
+| `/second-brain update-opinion [name]` | `/sb-opinion-update [name]` |
+| `/second-brain recall <query>` | `/sb-recall <query>` |
+| `/second-brain review` | `/sb-review` |
+| `/second-brain lint` | `/sb-lint` |
+| `/second-brain digest [period]` | `/sb-digest [period]` |
+
+Only recall requires a query. Save and update commands infer the concept, opinion, question, or target file from the current conversation. Optional hints are just context when the agent might otherwise guess wrong.
+
+## Core Workflow
+
+1. Run `/second-brain init`.
+2. Put raw notes, clips, or source files in `inbox/`.
+3. Run `/second-brain process` to reconcile `inbox/index.md`.
+4. Talk with the agent about what you read.
+5. Run `/second-brain save-concept`, `/second-brain save-opinion`, or `/second-brain save-question` when something is worth keeping.
+6. Use `/second-brain update-concept` or `/second-brain update-opinion` when a conversation changes an existing page.
+
+## Collision Behavior
+
+Default save collision behavior is:
+
+```yaml
+behaviors:
+  save_collision: ask
+```
+
+Available values:
+
+- `ask`: ask before merging or creating a numbered variant.
+- `merge`: merge into the existing file without prompting.
+- `new`: create a numbered variant like `topic-2.md`.
+
+## Files
+
+- `skills/second-brain/SKILL.md`: shared product rules and skill metadata.
+- `skills/second-brain/references/commands/`: canonical slash command instructions.
+- `skills/second-brain/references/aliases/`: short aliases.
+- `skills/second-brain/assets/vault/`: files copied into a new vault by `/second-brain init`.
+- `adapters/`: runtime-specific install guidance.
+- `docs/specs/design.md`: product and behavior spec.
+- `docs/install.md`: runtime-specific install guidance.
+
+## Agent Compatibility
+
+This repo is intentionally not tied to one agent runtime.
+
+- Agents that support `SKILL.md` can load `skills/second-brain/` directly.
+- Agents that support slash commands can import or copy `skills/second-brain/references/commands/` and `skills/second-brain/references/aliases/`.
+- Agents without slash command support can still follow the markdown command specs manually.
+- Platform-specific adapters live under `adapters/`. The source of truth stays in `skills/second-brain/`.
 
 ## Verify
 
