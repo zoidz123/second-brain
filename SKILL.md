@@ -64,12 +64,15 @@ behaviors:
   save_collision: ask
 ignore:
   - .obsidian/
-  - Daily/
 ```
 
 ## Writing Compiled Pages
 
-Concept pages are factual, multi-source, and non-editorial. Opinion pages are evaluative and should preserve the user's stance. Both are synthesized from the current conversation plus relevant vault sources, not from a required topic parameter.
+Concept pages are factual, multi-source, and non-editorial. Explain concepts with the Feynman technique: simple, intuitive, concrete, and concise. Start concept pages with `## TL;DR`, then `## Simple Overview`.
+
+Opinion pages are evaluative and should preserve the user's original opinion, wording, emphasis, and stance as much as possible. Clarify and structure the opinion without laundering it into generic analyst voice.
+
+Both page types are synthesized from the current conversation plus relevant vault sources, not from a required topic parameter.
 
 When `links.auto_link` is true, scan existing pages under `compiled/` and insert cross-references to clearly matching entities. Use `[[wikilinks]]` when `links.style` is `wikilinks`; otherwise use markdown links.
 

@@ -25,6 +25,13 @@ It helps you turn conversations about reading and research into durable concept,
 
 `style.md` controls behavior: tone, formatting, citation expectations, and domain conventions. Every command reads it before acting, and the user edits the vault-local copy.
 
+Default writing style:
+
+- Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`.
+- Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
+- Pages should be concise. Do not pad.
+
 ## Commands
 
 Command specs live in `commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.

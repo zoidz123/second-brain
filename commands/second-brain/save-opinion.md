@@ -17,8 +17,10 @@ Steps:
 2. Read `compiled/index.md` and relevant existing opinion pages to avoid duplicates.
 3. Infer a title and slug from the current conversation.
 4. If the target file exists, follow `behaviors.save_collision`: ask, merge, or new.
-5. Write an opinion page that preserves the user's stance, includes confidence when appropriate, and follows `style.md`.
-6. Cite source-derived claims, mark user notes, and mark background synthesis.
-7. If `links.auto_link` is true, add cross-links to matching compiled pages.
-8. Update `compiled/index.md`.
-9. Append a structured `/second-brain save-opinion` entry to `log.md`.
+5. Write an opinion page that preserves the user's original opinion, wording, emphasis, and stance as much as possible.
+6. Clarify and structure the opinion without turning it into generic analyst voice.
+7. Include confidence when appropriate and follow `style.md`.
+8. Cite source-derived claims, mark user notes, and mark background synthesis.
+9. If `links.auto_link` is true, add cross-links to matching compiled pages.
+10. Update `compiled/index.md`.
+11. Append a structured `/second-brain save-opinion` entry to `log.md`.

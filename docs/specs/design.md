@@ -47,6 +47,13 @@ Second Brain is an agent skill pack plus an opinionated filesystem convention fo
 - citation standards
 - domain conventions
 
+Default writing rules:
+
+- Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`.
+- Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
+- Pages should be concise and avoid padding.
+
 Every command must read both before acting. If `style.md` conflicts with skill defaults, `style.md` wins.
 
 ## Commands

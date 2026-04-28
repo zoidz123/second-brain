@@ -25,4 +25,3 @@ behaviors:
 # Paths the skills should ignore
 ignore:
   - .obsidian/
-  - Daily/

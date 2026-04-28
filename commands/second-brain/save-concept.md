@@ -18,7 +18,9 @@ Steps:
 3. Infer a title and slug from the current conversation.
 4. If the target file exists, follow `behaviors.save_collision`: ask, merge, or new.
 5. Write a factual concept page with frontmatter, source attribution, and no first-person opinion.
-6. Cite `inbox/` sources for sourced claims, mark user notes, and mark background synthesis.
-7. If `links.auto_link` is true, add cross-links to matching compiled pages.
-8. Update `compiled/index.md`.
-9. Append a structured `/second-brain save-concept` entry to `log.md`.
+6. Explain with the Feynman technique: simple, intuitive, concrete, and concise.
+7. Start with `## TL;DR`, then `## Simple Overview`.
+8. Cite `inbox/` sources for sourced claims, mark user notes, and mark background synthesis.
+9. If `links.auto_link` is true, add cross-links to matching compiled pages.
+10. Update `compiled/index.md`.
+11. Append a structured `/second-brain save-concept` entry to `log.md`.

@@ -78,14 +78,21 @@ assert(skill.includes("Source attribution"), "skill omits source attribution rul
 assert(skill.includes("save_collision"), "skill omits save_collision rule");
 assert(skill.includes("questions.md is append-only"), "skill omits append-only questions rule");
 assert(/^name: second-brain$/m.test(skill), "skill name must match repo folder");
+assert(/Feynman technique/i.test(skill), "skill omits Feynman concept rule");
+assert(skill.includes("## TL;DR"), "skill omits concept TL;DR rule");
+assert(/preserve the user's original opinion/i.test(skill), "skill omits opinion preservation rule");
 
 const config = read("templates/vault/.second-brain.yml");
 const style = read("templates/vault/style.md.template");
 assert(config.includes("save_collision: ask"), "template config omits save_collision default");
 assert(config.includes("auto_link: true"), "template config omits auto_link default");
 assert(config.includes("questions: compiled/questions.md"), "template config omits questions path");
+assert(!config.includes("Daily/"), "template config should not ignore Daily/ by default");
 assert(style.includes("# Research Style"), "style template missing heading");
 assert(/edit/i.test(style), "style template does not tell user it is editable");
+assert(/Feynman technique/i.test(style), "style template omits Feynman concept rule");
+assert(style.includes("## TL;DR"), "style template omits concept TL;DR rule");
+assert(/preserve the user's original opinion/i.test(style), "style template omits opinion preservation rule");
 
 const readme = read("README.md");
 assert(readme.includes("/second-brain save-concept"), "README omits save-concept");
