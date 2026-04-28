@@ -67,7 +67,7 @@ Hierarchy:
 
 ## Commands
 
-Command specs are stored as generic markdown under `commands/` so Codex, Claude, and other agent runtimes can adapt them to their own invocation systems.
+Command specs are stored as generic markdown under `skills/second-brain/references/commands/` so Codex, Claude, and other agent runtimes can adapt them to their own invocation systems.
 
 Runtime-specific setup lives in `docs/install.md`.
 

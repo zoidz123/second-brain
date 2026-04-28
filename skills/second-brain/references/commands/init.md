@@ -15,7 +15,7 @@ Initialize a vault named by the optional argument, defaulting to `default`.
 Steps:
 1. Create `~/SecondBrain/<name>/`.
 2. Create `inbox/`, `compiled/concepts/`, `compiled/opinions/`, and `compiled/digests/`.
-3. Copy templates from `templates/vault/` into the vault using this mapping:
+3. Copy templates from `assets/vault/` into the vault using this mapping:
    - `.second-brain.yml` -> `.second-brain.yml`
    - `style.md.template` -> `style.md`
    - `README.md.template` -> `README.md`

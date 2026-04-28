@@ -37,7 +37,7 @@ Default writing style:
 
 ## Commands
 
-Command specs live in `commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.
+Command specs live in `skills/second-brain/references/commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.
 
 | Long | Short |
 |---|---|
@@ -83,10 +83,11 @@ Available values:
 
 ## Files
 
-- `commands/second-brain/`: canonical slash command instructions.
-- `commands/aliases/sb-*.md`: short aliases.
-- `SKILL.md`: shared product rules and skill metadata.
-- `templates/vault/`: files copied into a new vault by `/second-brain init`.
+- `skills/second-brain/SKILL.md`: shared product rules and skill metadata.
+- `skills/second-brain/references/commands/`: canonical slash command instructions.
+- `skills/second-brain/references/aliases/`: short aliases.
+- `skills/second-brain/assets/vault/`: files copied into a new vault by `/second-brain init`.
+- `adapters/`: runtime-specific install guidance.
 - `docs/specs/design.md`: product and behavior spec.
 - `docs/install.md`: runtime-specific install guidance.
 
@@ -94,10 +95,10 @@ Available values:
 
 This repo is intentionally not tied to one agent runtime.
 
-- Agents that support `SKILL.md` can load the root skill directly.
-- Agents that support slash commands can import or copy `commands/second-brain/` and `commands/aliases/`.
+- Agents that support `SKILL.md` can load `skills/second-brain/` directly.
+- Agents that support slash commands can import or copy `skills/second-brain/references/commands/` and `skills/second-brain/references/aliases/`.
 - Agents without slash command support can still follow the markdown command specs manually.
-- Platform-specific adapters should be generated outside this repo, or added under an adapter-specific folder later. The source of truth stays in `SKILL.md`, `commands/`, and `templates/`.
+- Platform-specific adapters live under `adapters/`. The source of truth stays in `skills/second-brain/`.
 
 ## Verify
 

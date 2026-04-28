@@ -1,56 +1,70 @@
 # Install
 
-Second Brain keeps generic source files in this repo:
+Second Brain is packaged as one self-contained agent skill:
 
-- `SKILL.md`: shared agent instructions.
-- `commands/second-brain/`: canonical command specs.
-- `commands/aliases/`: short alias specs.
-- `templates/vault/`: files copied into user vaults.
+```text
+skills/second-brain/
+  SKILL.md
+  references/
+    commands/
+    aliases/
+  assets/
+    vault/
+```
 
-Different agent runtimes can adapt those files into their own command/plugin formats. The source of truth stays generic.
+The files under `skills/second-brain/` are the source of truth. Platform adapters point to that folder.
 
 ## Codex
 
-Use this repo as a local skill source by copying or symlinking it into the Codex-discovered skills directory.
-
-Suggested local install:
+Clone the repo and symlink the skill folder into Codex's discovered skills directory:
 
 ```bash
 git clone https://github.com/<your-user>/second-brain.git ~/.codex/second-brain
 mkdir -p ~/.agents/skills
-ln -s ~/.codex/second-brain ~/.agents/skills/second-brain
+ln -s ~/.codex/second-brain/skills/second-brain ~/.agents/skills/second-brain
 ```
 
-Restart Codex so it discovers `~/.agents/skills/second-brain/SKILL.md`.
+Restart Codex so it discovers:
 
-Then invoke the skill by asking Codex to use Second Brain commands. If your Codex setup supports command imports, map:
-
-- `commands/second-brain/*.md` to long commands.
-- `commands/aliases/*.md` to short commands.
+```text
+~/.agents/skills/second-brain/SKILL.md
+```
 
 ## Claude / Claude Code
 
-Claude-specific command folders can be generated from `commands/`, but they are not the source of truth.
-
-Suggested local command adapter:
+Symlink the same skill folder into Claude's skills directory:
 
 ```bash
-mkdir -p .claude/commands/second-brain
-cp commands/second-brain/*.md .claude/commands/second-brain/
-cp commands/aliases/*.md .claude/commands/
+git clone https://github.com/<your-user>/second-brain.git ~/second-brain
+mkdir -p ~/.claude/skills
+ln -s ~/second-brain/skills/second-brain ~/.claude/skills/second-brain
 ```
 
-Keep generated `.claude/` files out of this repo unless you are intentionally adding a Claude adapter.
+If you want Claude slash commands too, generate them from the skill references:
 
-## Cursor / Other Agents
+```bash
+mkdir -p ~/.claude/commands/second-brain
+cp ~/second-brain/skills/second-brain/references/commands/*.md ~/.claude/commands/second-brain/
+cp ~/second-brain/skills/second-brain/references/aliases/*.md ~/.claude/commands/
+```
 
-Import or reference:
+Those generated command files are adapters. The source of truth remains `skills/second-brain/`.
 
-- root `SKILL.md` for global behavior
-- `commands/second-brain/` for canonical commands
-- `commands/aliases/` for short aliases
+## Cursor
 
-If the agent has no slash-command system, paste or reference the relevant command markdown when asking it to act.
+Cursor does not natively consume this skill format the same way Codex and Claude do. Use the Cursor adapter guidance:
+
+```text
+adapters/cursor/INSTALL.md
+```
+
+## OpenCode
+
+Use the OpenCode adapter guidance:
+
+```text
+adapters/opencode/INSTALL.md
+```
 
 ## First-Run Check
 

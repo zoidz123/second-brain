@@ -5,7 +5,7 @@ description: Use when maintaining a local markdown Second Brain vault; processes
 
 # Second Brain
 
-Second Brain is a local-first markdown vault convention. The filesystem is the product. The agent maintains the vault by following these rules and the slash command instructions in `commands/`.
+Second Brain is a local-first markdown vault convention. The filesystem is the product. The agent maintains the vault by following these rules and the slash command instructions in `references/commands/`.
 
 ## Product Rules
 
