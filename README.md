@@ -28,9 +28,12 @@ It helps you turn conversations about reading and research into durable concept,
 Default writing style:
 
 - Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
-- Concept pages start with `## TL;DR`, then `## Simple Overview`.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
 - Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
+- Opinion pages include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+- Opinion evidence belongs in `## Why I Believe It`.
 - Pages should be concise. Do not pad.
+- Avoid generic consultant language and AI slop.
 
 ## Commands
 

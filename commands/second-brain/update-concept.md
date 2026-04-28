@@ -18,7 +18,9 @@ Steps:
 3. If the target cannot be inferred confidently, ask which file to update.
 4. Merge new claims, citations, and links into the existing page.
 5. Preserve the concept page's Feynman-style clarity: simple, intuitive, concrete, and concise.
-6. Preserve user-written content and never silently delete material.
-7. Update `updated:` frontmatter.
-8. Update `compiled/index.md` if the summary changed.
-9. Append a structured `/second-brain update-concept` entry to `log.md`.
+6. Preserve `## TL;DR`, `## Simple Overview`, and `## Why This Matters`.
+7. Avoid generic consultant language and AI slop.
+8. Preserve user-written content and never silently delete material.
+9. Update `updated:` frontmatter.
+10. Update `compiled/index.md` if the summary changed.
+11. Append a structured `/second-brain update-concept` entry to `log.md`.

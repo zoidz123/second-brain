@@ -18,7 +18,10 @@ Steps:
 3. If the target cannot be inferred confidently, ask which file to update.
 4. Merge the user's current stance, changed confidence, citations, and links into the existing page.
 5. Preserve the user's original opinion, wording, emphasis, and stance as much as possible.
-6. Preserve user-written content and never silently delete material.
-7. Update `updated:` frontmatter.
-8. Update `compiled/index.md` if the summary changed.
-9. Append a structured `/second-brain update-opinion` entry to `log.md`.
+6. Preserve `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+7. In `## Why I Believe It`, reference the evidence, reasons, or source files behind the belief.
+8. Avoid generic consultant language and AI slop.
+9. Preserve user-written content and never silently delete material.
+10. Update `updated:` frontmatter.
+11. Update `compiled/index.md` if the summary changed.
+12. Append a structured `/second-brain update-opinion` entry to `log.md`.

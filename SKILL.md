@@ -25,6 +25,8 @@ Second Brain is a local-first markdown vault convention. The filesystem is the p
 4. Read the relevant index before writing: `inbox/index.md` for inbox work, `compiled/index.md` for compiled work.
 5. Preserve manual edits unless the user explicitly approves changing them.
 
+`SKILL.md` is the product-wide default behavior. A vault's `style.md` is the user-owned local override. Commands must load both; when they differ, the vault's `style.md` wins unless the user asks to change the global defaults.
+
 ## Default Vault Layout
 
 ```text
@@ -68,9 +70,11 @@ ignore:
 
 ## Writing Compiled Pages
 
-Concept pages are factual, multi-source, and non-editorial. Explain concepts with the Feynman technique: simple, intuitive, concrete, and concise. Start concept pages with `## TL;DR`, then `## Simple Overview`.
+Concept pages are factual, multi-source, and non-editorial. Explain concepts with the Feynman technique: simple, intuitive, concrete, and concise. Start concept pages with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
 
-Opinion pages are evaluative and should preserve the user's original opinion, wording, emphasis, and stance as much as possible. Clarify and structure the opinion without laundering it into generic analyst voice.
+Opinion pages are evaluative and should preserve the user's original opinion, wording, emphasis, and stance as much as possible. Clarify and structure the opinion without laundering it into generic analyst voice. Include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`. The "why" section should reference the evidence, reasons, or source files behind the belief.
+
+Avoid generic consultant language and AI slop. Write like the user's future self, not like a polished corporate memo.
 
 Both page types are synthesized from the current conversation plus relevant vault sources, not from a required topic parameter.
 

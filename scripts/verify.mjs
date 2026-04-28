@@ -80,7 +80,13 @@ assert(skill.includes("questions.md is append-only"), "skill omits append-only q
 assert(/^name: second-brain$/m.test(skill), "skill name must match repo folder");
 assert(/Feynman technique/i.test(skill), "skill omits Feynman concept rule");
 assert(skill.includes("## TL;DR"), "skill omits concept TL;DR rule");
+assert(skill.includes("## Simple Overview"), "skill omits concept simple overview rule");
+assert(skill.includes("## Why This Matters"), "skill omits concept why-this-matters rule");
 assert(/preserve the user's original opinion/i.test(skill), "skill omits opinion preservation rule");
+assert(skill.includes("## What I Believe"), "skill omits opinion belief section");
+assert(skill.includes("## Why I Believe It"), "skill omits opinion evidence section");
+assert(skill.includes("## What Would Change My Mind"), "skill omits opinion falsification section");
+assert(/AI slop/i.test(skill), "skill omits anti-slop rule");
 
 const config = read("templates/vault/.second-brain.yml");
 const style = read("templates/vault/style.md.template");
@@ -92,7 +98,13 @@ assert(style.includes("# Research Style"), "style template missing heading");
 assert(/edit/i.test(style), "style template does not tell user it is editable");
 assert(/Feynman technique/i.test(style), "style template omits Feynman concept rule");
 assert(style.includes("## TL;DR"), "style template omits concept TL;DR rule");
+assert(style.includes("## Simple Overview"), "style template omits concept simple overview rule");
+assert(style.includes("## Why This Matters"), "style template omits concept why-this-matters rule");
 assert(/preserve the user's original opinion/i.test(style), "style template omits opinion preservation rule");
+assert(style.includes("## What I Believe"), "style template omits opinion belief section");
+assert(style.includes("## Why I Believe It"), "style template omits opinion evidence section");
+assert(style.includes("## What Would Change My Mind"), "style template omits opinion falsification section");
+assert(/AI slop/i.test(style), "style template omits anti-slop rule");
 
 const readme = read("README.md");
 assert(readme.includes("/second-brain save-concept"), "README omits save-concept");

@@ -4,6 +4,7 @@ Edit this file to teach the agent how to write in this vault.
 
 ## Tone
 - Direct and clear.
+- No generic consultant language. No AI slop.
 - Cite specific sources for source-derived claims.
 - Surface disagreement when sources conflict.
 
@@ -14,7 +15,9 @@ Edit this file to teach the agent how to write in this vault.
 
 ## Formatting
 - Keep pages concise. Do not pad.
-- Concept pages start with `## TL;DR`, then `## Simple Overview`.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
+- Opinion pages include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+- In `## Why I Believe It`, reference the evidence, reasons, or source files behind the belief.
 - Put source notes at the bottom.
 
 ## Domain Conventions

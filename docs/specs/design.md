@@ -50,9 +50,12 @@ Second Brain is an agent skill pack plus an opinionated filesystem convention fo
 Default writing rules:
 
 - Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
-- Concept pages start with `## TL;DR`, then `## Simple Overview`.
+- Concept pages start with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
 - Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
+- Opinion pages include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+- Opinion evidence belongs in `## Why I Believe It`.
 - Pages should be concise and avoid padding.
+- Avoid generic consultant language and AI slop.
 
 Every command must read both before acting. If `style.md` conflicts with skill defaults, `style.md` wins.
 

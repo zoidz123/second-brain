@@ -19,8 +19,11 @@ Steps:
 4. If the target file exists, follow `behaviors.save_collision`: ask, merge, or new.
 5. Write an opinion page that preserves the user's original opinion, wording, emphasis, and stance as much as possible.
 6. Clarify and structure the opinion without turning it into generic analyst voice.
-7. Include confidence when appropriate and follow `style.md`.
-8. Cite source-derived claims, mark user notes, and mark background synthesis.
-9. If `links.auto_link` is true, add cross-links to matching compiled pages.
-10. Update `compiled/index.md`.
-11. Append a structured `/second-brain save-opinion` entry to `log.md`.
+7. Include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
+8. In `## Why I Believe It`, reference the evidence, reasons, or source files behind the belief.
+9. Avoid generic consultant language and AI slop.
+10. Include confidence when appropriate and follow `style.md`.
+11. Cite source-derived claims, mark user notes, and mark background synthesis.
+12. If `links.auto_link` is true, add cross-links to matching compiled pages.
+13. Update `compiled/index.md`.
+14. Append a structured `/second-brain save-opinion` entry to `log.md`.
