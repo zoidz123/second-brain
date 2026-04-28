@@ -30,6 +30,14 @@ Restart Codex so it discovers:
 ~/.agents/skills/second-brain/SKILL.md
 ```
 
+If slash commands do not appear in your agent UI, invoke the skill with natural language:
+
+```text
+Use second-brain to show help.
+Use second-brain to initialize a research vault.
+Use second-brain to save this conversation as a concept.
+```
+
 ## Claude / Claude Code
 
 Symlink the same skill folder into Claude's skills directory:

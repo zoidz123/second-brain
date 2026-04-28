@@ -39,8 +39,17 @@ Default writing style:
 
 Command specs live in `skills/second-brain/references/commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.
 
+Slash commands may not show up automatically in every agent UI. If they do not, use natural language:
+
+```text
+Use second-brain to initialize a research vault.
+Use second-brain to save this conversation as a concept.
+Use second-brain to recall what I know about stablecoins.
+```
+
 | Long | Short |
 |---|---|
+| `/second-brain help` | `/sb-help` |
 | `/second-brain init [name]` | `/sb-init [name]` |
 | `/second-brain list` | `/sb-list` |
 | `/second-brain switch <name>` | `/sb-switch <name>` |

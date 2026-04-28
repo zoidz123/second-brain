@@ -10,6 +10,7 @@ Second Brain is a local-first markdown vault convention. The filesystem is the p
 ## Product Rules
 
 - Product philosophy: zero required parameters except `/second-brain recall <query>`.
+- Slash commands may not automatically appear in every agent UI. If the user asks how to use Second Brain, asks what commands exist, or appears unsure what to do next, show the command menu from `references/commands/help.md`.
 - Optional parameters are only hints. They help disambiguate; they are not required for save or update commands.
 - Never auto-promote raw sources. Distillation only happens when the user explicitly runs a save, update, or digest command.
 - Source attribution is mandatory. Cite `inbox/` files for source-derived claims, mark user notes as user notes, and mark background synthesis as not from the user's sources.
@@ -117,3 +118,16 @@ When saving a concept or opinion and the target slug already exists:
 - `new`: create the next numbered variant, such as `topic-2.md`.
 
 Update commands always target an existing page. If no target can be inferred confidently, ask the user which file to update.
+
+## Command Discovery
+
+Users can invoke Second Brain either through slash commands or natural language.
+
+Equivalent examples:
+
+- `/second-brain init research`
+- `Use second-brain to initialize a research vault.`
+- `/sb-concept`
+- `Use second-brain to save this conversation as a concept.`
+
+If slash commands are not visible in the agent UI, natural language still works as long as the agent has loaded this skill.

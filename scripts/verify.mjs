@@ -16,6 +16,7 @@ const assert = (condition, message) => {
 const read = (path) => readFileSync(join(root, path), "utf8");
 
 const canonical = [
+  "help",
   "init",
   "list",
   "switch",
@@ -32,6 +33,7 @@ const canonical = [
 ];
 
 const aliases = [
+  "sb-help",
   "sb-init",
   "sb-list",
   "sb-switch",
@@ -100,6 +102,8 @@ assert(/process_missing: mark-missing/i.test(skill), "skill omits process_missin
 assert(/type: concept/i.test(skill), "skill omits canonical frontmatter");
 assert(/created: 2026-04-28T00:00:00Z/i.test(skill), "skill omits timestamp frontmatter example");
 assert(/One conversation may update many artifacts/i.test(skill), "skill omits multi-artifact update rule");
+assert(/Slash commands may not automatically appear/i.test(skill), "skill omits command discovery caveat");
+assert(/natural language still works/i.test(skill), "skill omits natural-language fallback");
 
 const config = read(`${assetDir}/.second-brain.yml`);
 const style = read(`${assetDir}/style.md.template`);
@@ -123,6 +127,8 @@ assert(/AI slop/i.test(style), "style template omits anti-slop rule");
 const readme = read("README.md");
 assert(readme.includes("/second-brain save-concept"), "README omits save-concept");
 assert(readme.includes("/sb-concept"), "README omits short alias");
+assert(readme.includes("/second-brain help"), "README omits help command");
+assert(/natural language/i.test(readme), "README omits natural-language fallback");
 assert(readme.includes("style.md"), "README omits style.md");
 assert(readme.includes(".second-brain.yml"), "README omits .second-brain.yml");
 assert(readme.includes("skills/second-brain/SKILL.md"), "README omits self-contained skill path");
