@@ -1,8 +1,39 @@
 # Second Brain
 
-Second Brain is an agent skill pack plus a local markdown vault convention.
+Second Brain is an agent skill pack plus a local markdown vault convention for personal research.
 
-It helps you turn conversations about reading and research into durable concept, opinion, question, and digest files. The product is intentionally simple: no app, no daemon, no database. Users keep a normal folder of markdown files and ask the agent to maintain it.
+Use it with an agent like Claude, Codex, Cursor, or OpenCode to turn reading, notes, and conversations into durable concept, opinion, question, and digest files.
+
+Second Brain works well with Obsidian because the vault is just markdown. Use the Obsidian Web Clipper to capture articles and set the clipper destination to `inbox` so new clips flow directly into your Second Brain inbox.
+
+## Quick Start
+
+1. Install the skill for your agent runtime. See [docs/install.md](docs/install.md).
+2. Ask your agent:
+
+```text
+Initialize a default vault.
+```
+
+3. Put source material in:
+
+```text
+~/SecondBrain/default/inbox/
+```
+
+4. Ask your agent:
+
+```text
+Process my inbox.
+```
+
+5. Talk with the agent about what you read, then ask it to save what matters:
+
+```text
+Save this conversation as a concept.
+Save this as an opinion.
+Save this question for later.
+```
 
 ## Vault Layout
 
@@ -21,74 +52,98 @@ It helps you turn conversations about reading and research into durable concept,
   .second-brain.yml
 ```
 
-`.second-brain.yml` controls structure: folder paths, frontmatter fields, link style, auto-linking, and save collision behavior.
+`.second-brain.yml` controls structure: folder paths, frontmatter fields, link style, and auto-linking behavior.
 
 `style.md` controls behavior: tone, formatting, citation expectations, and domain conventions. Every command reads it before acting, and the user edits the vault-local copy.
 
-Default writing style:
+## How To Invoke Actions
 
-- Concepts use the Feynman technique: simple, intuitive, concrete, and concise.
-- Concept pages start with `## TL;DR`, then `## Simple Overview`, then `## Why This Matters`.
-- Opinions preserve the user's original opinion, wording, emphasis, and stance as much as possible.
-- Opinion pages include `## What I Believe`, `## Why I Believe It`, and `## What Would Change My Mind`.
-- Opinion evidence belongs in `## Why I Believe It`.
-- Pages should be concise. Do not pad.
-- Avoid generic consultant language and AI slop.
+Second Brain actions can be invoked in plain English.
 
-## Commands
-
-Command specs live in `skills/second-brain/references/commands/`. They are plain markdown so different agents can map them into their own command systems. Long form is canonical. Short aliases are included for daily use.
-
-Slash commands may not show up automatically in every agent UI. If they do not, use natural language:
+Common prompts:
 
 ```text
-Use second-brain to initialize a research vault.
-Use second-brain to save this conversation as a concept.
-Use second-brain to recall what I know about stablecoins.
+Initialize a default vault.
+Initialize a research vault.
+Process my inbox.
+Save this conversation as a concept.
+Save this as an opinion.
+Save this question for later.
+Update the related concept from this conversation.
+Recall what I know about stablecoins.
+Create a digest of this week's research.
+Review my vault.
 ```
 
-| Long | Short |
-|---|---|
-| `/second-brain help` | `/sb-help` |
-| `/second-brain init [name]` | `/sb-init [name]` |
-| `/second-brain list` | `/sb-list` |
-| `/second-brain switch <name>` | `/sb-switch <name>` |
-| `/second-brain process` | `/sb-process` |
-| `/second-brain save-concept [hint]` | `/sb-concept [hint]` |
-| `/second-brain save-opinion [hint]` | `/sb-opinion [hint]` |
-| `/second-brain save-question [hint]` | `/sb-question [hint]` |
-| `/second-brain update-concept [name]` | `/sb-concept-update [name]` |
-| `/second-brain update-opinion [name]` | `/sb-opinion-update [name]` |
-| `/second-brain recall <query>` | `/sb-recall <query>` |
-| `/second-brain review` | `/sb-review` |
-| `/second-brain lint` | `/sb-lint` |
-| `/second-brain digest [period]` | `/sb-digest [period]` |
+Command reference:
 
-Only recall requires a query. Save and update commands infer the concept, opinion, question, or target file from the current conversation. Optional hints are just context when the agent might otherwise guess wrong.
+| Action | Plain English | Slash command | Short alias |
+|---|---|---|---|
+| Show help | `Show commands.` | `/second-brain help` | `/sb-help` |
+| Create a vault | `Initialize a research vault.` | `/second-brain init [name]` | `/sb-init [name]` |
+| List vaults | `List my vaults.` | `/second-brain list` | `/sb-list` |
+| Switch vaults | `Switch to my research vault.` | `/second-brain switch <name>` | `/sb-switch <name>` |
+| Process inbox | `Process my inbox.` | `/second-brain process` | `/sb-process` |
+| Save concept | `Save this conversation as a concept.` | `/second-brain save-concept [hint]` | `/sb-concept [hint]` |
+| Save opinion | `Save this as an opinion.` | `/second-brain save-opinion [hint]` | `/sb-opinion [hint]` |
+| Save question | `Save this question for later.` | `/second-brain save-question [hint]` | `/sb-question [hint]` |
+| Update concept | `Update the related concept.` | `/second-brain update-concept [name]` | `/sb-concept-update [name]` |
+| Update opinion | `Update the related opinion.` | `/second-brain update-opinion [name]` | `/sb-opinion-update [name]` |
+| Recall knowledge | `Recall what I know about stablecoins.` | `/second-brain recall <query>` | `/sb-recall <query>` |
+| Review vault | `Review my vault.` | `/second-brain review` | `/sb-review` |
+| Lint vault | `Lint my vault.` | `/second-brain lint` | `/sb-lint` |
+| Create digest | `Create a weekly digest.` | `/second-brain digest [period]` | `/sb-digest [period]` |
 
-## Core Workflow
+Only recall requires a query. Save and update actions infer the concept, opinion, question, or target file from the current conversation. Optional hints are just context when the agent might otherwise guess wrong.
 
-1. Run `/second-brain init`.
-2. Put raw notes, clips, or source files in `inbox/`.
-3. Run `/second-brain process` to reconcile `inbox/index.md`.
-4. Talk with the agent about what you read.
-5. Run `/second-brain save-concept`, `/second-brain save-opinion`, or `/second-brain save-question` when something is worth keeping.
-6. Use `/second-brain update-concept` or `/second-brain update-opinion` when a conversation changes an existing page.
+## Daily Workflow
 
-## Collision Behavior
+### 1. Capture Sources
 
-Default save collision behavior is:
+Save raw material into your vault's inbox:
 
-```yaml
-behaviors:
-  save_collision: ask
+```text
+~/SecondBrain/default/inbox/
 ```
 
-Available values:
+This can include markdown notes, web clips, transcripts, PDFs, and other local source files.
 
-- `ask`: ask before merging or creating a numbered variant.
-- `merge`: merge into the existing file without prompting.
-- `new`: create a numbered variant like `topic-2.md`.
+### 2. Process The Inbox
+
+Ask:
+
+```text
+Process my inbox.
+```
+
+This reconciles `inbox/index.md` with the files in `inbox/`. It does not distill or promote sources by itself.
+
+### 3. Discuss What You Read
+
+Talk with your agent about the source material. Ask for summaries, implications, comparisons, counterarguments, or open questions.
+
+### 4. Save Durable Knowledge
+
+When something is worth keeping, ask:
+
+```text
+Save this conversation as a concept.
+Save this as an opinion.
+Save this question for later.
+```
+
+Concepts are factual synthesis. Opinions preserve your stance. Questions are open research threads.
+
+### 5. Recall And Update
+
+Ask:
+
+```text
+Recall what I know about stablecoins.
+Update the related concept from this conversation.
+```
+
+Recall searches the compiled vault. Update actions modify existing durable pages when a new conversation changes what you already know.
 
 ## Files
 

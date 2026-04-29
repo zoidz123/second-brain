@@ -128,7 +128,7 @@ const readme = read("README.md");
 assert(readme.includes("/second-brain save-concept"), "README omits save-concept");
 assert(readme.includes("/sb-concept"), "README omits short alias");
 assert(readme.includes("/second-brain help"), "README omits help command");
-assert(/natural language/i.test(readme), "README omits natural-language fallback");
+assert(/plain English/i.test(readme), "README omits plain-English invocation");
 assert(readme.includes("style.md"), "README omits style.md");
 assert(readme.includes(".second-brain.yml"), "README omits .second-brain.yml");
 assert(readme.includes("skills/second-brain/SKILL.md"), "README omits self-contained skill path");
