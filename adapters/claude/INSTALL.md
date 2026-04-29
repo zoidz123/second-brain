@@ -3,7 +3,7 @@
 Install the skill:
 
 ```bash
-git clone https://github.com/<your-user>/second-brain.git ~/second-brain
+git clone https://github.com/zoidz123/second-brain.git ~/second-brain
 mkdir -p ~/.claude/skills
 ln -s ~/second-brain/skills/second-brain ~/.claude/skills/second-brain
 ```

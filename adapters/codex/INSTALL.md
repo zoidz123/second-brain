@@ -5,9 +5,9 @@ Codex discovers local skills from `~/.agents/skills`.
 Install:
 
 ```bash
-git clone https://github.com/<your-user>/second-brain.git ~/.codex/second-brain
+git clone https://github.com/zoidz123/second-brain.git ~/second-brain
 mkdir -p ~/.agents/skills
-ln -s ~/.codex/second-brain/skills/second-brain ~/.agents/skills/second-brain
+ln -s ~/second-brain/skills/second-brain ~/.agents/skills/second-brain
 ```
 
 Restart Codex after installing.
@@ -21,13 +21,13 @@ ls -la ~/.agents/skills/second-brain
 It should point to:
 
 ```text
-~/.codex/second-brain/skills/second-brain
+~/second-brain/skills/second-brain
 ```
 
 Update:
 
 ```bash
-cd ~/.codex/second-brain && git pull
+cd ~/second-brain && git pull
 ```
 
 Uninstall:

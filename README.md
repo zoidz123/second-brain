@@ -6,28 +6,63 @@ Use it with an agent like Claude, Codex, Cursor, or OpenCode to turn reading, no
 
 Second Brain works well with Obsidian because the vault is just markdown. Use the Obsidian Web Clipper to capture articles and set the clipper destination to `inbox` so new clips flow directly into your Second Brain inbox.
 
+## Install
+
+Clone the repo:
+
+```bash
+git clone https://github.com/zoidz123/second-brain.git ~/second-brain
+```
+
+Then link the skill into your agent.
+
+### Claude / Claude Code
+
+```bash
+mkdir -p ~/.claude/skills
+ln -s ~/second-brain/skills/second-brain ~/.claude/skills/second-brain
+```
+
+### Codex
+
+```bash
+mkdir -p ~/.agents/skills
+ln -s ~/second-brain/skills/second-brain ~/.agents/skills/second-brain
+```
+
+### Cursor / OpenCode
+
+Point your agent at:
+
+```text
+~/second-brain/skills/second-brain/SKILL.md
+```
+
+Detailed install notes live in [docs/install.md](docs/install.md). Runtime-specific notes live in [adapters/](adapters/).
+
 ## Quick Start
 
-1. Install the skill for your agent runtime. See [docs/install.md](docs/install.md).
-2. Ask your agent:
+1. Install the skill.
+2. Restart your agent.
+3. Ask your agent:
 
 ```text
 Initialize a default vault.
 ```
 
-3. Put source material in:
+4. Put source material in:
 
 ```text
 ~/SecondBrain/default/inbox/
 ```
 
-4. Ask your agent:
+5. Ask your agent:
 
 ```text
 Process my inbox.
 ```
 
-5. Talk with the agent about what you read, then ask it to save what matters:
+6. Talk with the agent about what you read, then ask it to save what matters:
 
 ```text
 Save this conversation as a concept.
